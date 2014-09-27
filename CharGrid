@@ -1,0 +1,63 @@
+// 2-d array Problems
+// CharGrid encapsulates a 2-d grid of chars and supports
+// a few operations on the grid.
+
+package assign1;
+
+public class CharGrid {
+	private char[][] grid;
+
+	/**
+	 * Constructs a new CharGrid with the given grid.
+	 * Does not make a copy.
+	 * @param grid
+	 */
+	public CharGrid(char[][] grid) {
+		this.grid = grid;
+		clear();
+	}
+	
+	/**
+	 * Returns the area for the given char in the grid. (see handout).
+	 * @param ch char to look for
+	 * @return area for given char
+	 */
+	public int charArea(char ch) {
+	    int rmax = 0, rmin = 0, colmax = 0, colmin = 0;
+	    int i,j;
+	    boolean charAppear = false;
+	    
+	    if(grid == null) return 0;
+	    
+	    for(i = 0; i < grid.length; i++)
+	        for(j = 0; j < grid[0].length; j++) {
+	            if(grid[i][j] == ch) {
+	                if(charAppear = false) {
+	                    rmin = i;
+	                    rmax = i;
+	                    colmax = j;
+	                    colmin = j;
+	                    charAppear = true;
+	                } else {
+	                    if(colmax < j) colmax = j;
+	                    if(colmin > j) colmin = j;
+	                    if(rmax < i) rmax = i;
+	                    if(rmin > i) rmin = i;
+	                }
+	            }
+	        }
+	    }
+	    if(charAppear == false) return 0;
+	    return (rmax-rmin+1) * (colmax-colmin+1);
+	}
+	
+	/**
+	 * Returns the count of '+' figures in the grid (see handout).
+	 * @return number of + in grid
+	 */
+	public int countPlus() {
+	    int count = 0;
+		if (grid == null) return 0;
+		if (grid.length < 3 || grid[0].length < 3) return 0;
+	}
+}
